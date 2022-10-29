@@ -1,0 +1,152 @@
+/* --------------------------
+# START CONFIGURATION
+----------------------------*/
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* --------------------------
+# NAV BAR
+----------------------------*/
+#btn-nav {
+  /* width: 90px; */
+  float: right;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+/* --------------------------
+# FOOTER
+----------------------------*/
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+
+#footer,
+.push {
+  height: 50px;
+}
+
+/* --------------------------
+# TYPED JS EFFECT IN BG
+----------------------------*/
+.block-position {
+  width: 80%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* --------------------------
+# Message icon (floating) in Home
+----------------------------*/
+/* .pulse {
+  width: 70px;
+  height: 70px;
+  background-color: red;
+  border-radius: 50%;
+  position: relative;
+  animation: animate 3s linear infinite;
+  
+}
+
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255, 109, 74, 0.7), 0 0 0 0 rgb(255, 109, 74, 0.7);
+  }
+  40% {
+    box-shadow: 0 0 0 50px rgb(255, 109, 74, 0), 0 0 0 0 rgb(255, 109, 74, 0.7);
+  }
+  80% {
+    box-shadow: 0 0 0 50px rgb(255, 109, 74, 0), 0 0 0 30px rgb(255, 109, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(255, 109, 74, 0), 0 0 0 30px rgb(255, 109, 74, 0);
+  }
+} */
+.pulse {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    right: 30px;
+    bottom: 75px;
+    padding: 5px;
+    animation: animate 3s linear infinite;
+}
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 0 0 rgba(1, 152, 117, 0.7), 0 0 0 0 rgba(1, 152, 117, 0.7);
+  }
+  40% {
+    box-shadow: 0 0 0 50px rgb(255, 109, 74, 0), 0 0 0 0 rgba(1, 152, 117, 0.7);
+  }
+  80% {
+    box-shadow: 0 0 0 50px rgb(255, 109, 74, 0), 0 0 0 30px rgb(255, 109, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(255, 109, 74, 0), 0 0 0 30px rgb(255, 109, 74, 0);
+  }
+}
+
+/* --------------------------
+#  CUSTOM SWEET ALERT
+----------------------------*/
+/* All text centered */
+.swal-text {
+    text-align: center;
+}
+/* Icon setting */
+.swal-icon-success:before,
+.swal-icon-success:after,
+.swal-icon-success__hide-corners {
+    background: none !important;
+
+}
+.swal-icon--success{
+/* color of ring */
+
+
+}
+.swal-icon--success__line {
+/* Animation */
+background-color: green;
+
+
+}
+
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: black;
+    font-size: 12px;
+    border: 1px solid black;
+}
+
+.swal-button:focus {
+/* remove the silver border around the button */
+box-shadow: none;
+
+}
+.swal-button:not([disabled]):hover {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+
+}
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+<!--===title of the browser-->
+{% block title %}
+Inbox
+{% endblock title %}
+
+<!---======Block image======-->
+{% block image %}
+{% endblock image %}
+
+<!---====Block Typed Js-->
+{% block typed %}
+{% endblock typed %}
+
+<!--=== Nav Title-->
+{% block navtitle %}
+<i class='bx bxs-envelope' ></i>&nbsp;&nbsp;<span>Inbox</span>
+{% endblock navtitle %}
+
+
+<!--=====Nav Hamburger content=====-->
+{% block sidebar-content %}
+<a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm">Logout</a>
+{% endblock sidebar-content %}
+
+
+
+
+
+<!--====page content===-->
+{% block content %}
+<h1 class="text-danger text-center mt-5">Inbox page (backend)</h1>
+{% endblock content %}
