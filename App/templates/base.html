@@ -134,7 +134,7 @@
 
     <script>
         swal("Denied !", "Enter your data correctly.", "info")
-        
+
 
     </script>
     {% endif %}
@@ -179,6 +179,14 @@
 
     </script>
     {% endblock typed %}
+
+    <!--=====Function to pulse text to login page ============= -->
+    <script>
+        (function pulse() {
+            $('.text-pulse').fadOut(1000).fadeIn(1000, pulse);
+        })(); 
+        
+    </script>
 
 
 
