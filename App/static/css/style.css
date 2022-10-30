@@ -40,6 +40,16 @@ body {
 
 }
 
+/* -----------------------------
+#  OTHER PARTS (MIXED PARTS
+------------------------------*/
+.btn-modal {
+  width: 70px;
+}
+.btn-action {
+  width: 45px;
+}
+
 
 
 
@@ -170,6 +180,35 @@ box-shadow: none;
     border: 1px solid black;
 
 }
+
+/* -----------------------------
+#  BOOTSTRAP (FORM GREEN THEME)
+------------------------------*/
+
+.form-control:focus {
+    border-color: green;
+    box-shadow: none;
+}
+
+.btn:focus, .btn-active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Checkbox green theme (show/hide passwod*/
+.form-check-input:checked {
+    background-color: rgba(1, 152, 117, 0.7);
+    border: green
+    box-shadow 0 0 8px rgba(1, 152, 117, 0.4)
+}
+.form-check-input {
+    border: green;
+    box-shadow: 0 0 8px rgba(1, 152, 117, 0.4)
+    
+
+}
+
+
 
 
 

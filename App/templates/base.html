@@ -63,22 +63,26 @@
         <!-- navbar-->
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <!--===nav title and logo (content 1)=====-->
                 <div class="col-sm">
                     <a href="{% url 'home' %}" class="navbar-brand flex-grow-1" style="color: white; margin-left:25px;" >
                         {% block navtitle %}
                         <i class='bx bxs-hot bx-tada bx-flip-vertical'></i>&nbsp;<span>Codestreak Co.</span>
                         {% endblock navtitle %}
                     </a>
-
                 </div>
+                <!--===nav center Date and time (content 2)=====-->
+                {% block datetime %}{% endblock datetime %}
 
-                <!--===nav Humberger=====-->
+
+
+                <!--===nav Humberger (content 3)=====-->
                 <div class="col-sm">
                     
                     <a  class="navbar-brand flex-grow-1" id="btn-nav" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                         <i class="fas fa-bars" ></i>
                     </a>
-                    
+                   
                 </div>
             </nav>
         </header>
@@ -127,6 +131,12 @@
             </a>
         </div>
     </footer>
+
+    <!--====== INCLUDES =======-->
+    {% include 'modals/logout.html' %}
+    {% include 'modals/message.html' %}
+
+
 
     <!--===Message from backend (login)====-->
     {% if form.errors %}
@@ -186,6 +196,35 @@
             $('.text-pulse').fadOut(1000).fadeIn(1000, pulse);
         })(); 
         
+    </script>
+
+    <!--============function to hide/show password ========-->
+    <script>
+        var x = document.getElementById("login-form-password");   // Input
+        var s = document.getElementById("Layer_1");               // Show pass
+        var h = document.getElementById("Layer_2");               // Hide pass
+
+        function togglePass() {
+            if (x.type === "password") {
+                x.type = 'text';
+                s.style.display = 'none';
+                h.style.display = 'inline';
+            } else {
+                x.type = 'password';
+                s.style.display = 'inline';
+                h.style.display = 'none';
+            }   
+        }
+
+    </script>
+
+
+    <!-- Script to close offcanvas when is button is clicked -->
+    <script>
+        jQuery('#offcanvasRight, .offcanvas-body a').click(function(){
+            console.log($(this).attr('href'));
+            jQuery('.offcanvas').offcanvas('hide');
+        });
     </script>
 
 

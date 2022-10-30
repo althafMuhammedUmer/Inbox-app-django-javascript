@@ -47,4 +47,34 @@ $(document).ready(function() {
     }})
 })
 
+// 3 ===> (Script to get DATE AND TIME real time)
+setInterval(function() {
+    var date = new Date();
+    $('#clock').html(
+        (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" +
+        (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":" +
+        (date.getSeconds() < 10 ? '0' : '') + date.getSeconds()
+
+    );
+}, 500);
+
+
+// 4 ===> (Script to update the page always at 0:00)
+function autoRefresh(hours, minute, seconds){
+    var now = new Date(), then = new Date();
+    then.setHours(hours, minute, seconds, 0);
+    if(then.getTime() < now.getTime()) {
+        then.setDate(now.getDate() + 1);
+
+    }
+    var timeout = (then.getTime() - now.getTime());
+    setTimeout(function() {
+        window.location.reload(true)
+
+    }, timeout);
+
+}
+autoRefresh(0,0,0)
+
+
 
