@@ -37,7 +37,7 @@ $(document).ready(function(){
 // 2 ==> Inputmask (only in PHONE i used )
 $(document).ready(function() {
     
-    $('.phone').inputmask("(+99) 9999999999", {"onincomplete": function() {
+    $('.phone').inputmask("(+91) 9999999999", {"onincomplete": function() {
         
         swal("Opss !", "Incomplete phone . Please review !", "info");
         $('.phone').val("");
@@ -75,6 +75,17 @@ function autoRefresh(hours, minute, seconds){
 
 }
 autoRefresh(0,0,0)
+
+
+// 5 ==== script to accept until 2mb 'upload file'
+$("input[type='file']").on("change", function () {
+    if(this.files[0].size > 2000000) {
+    //   alert("Please upload file less than 2MB. Thanks!!");
+      swal("Attention !", "Maximum allowed size is 2mb", "info");
+      $(this).val('');
+    }
+   });
+
 
 
 

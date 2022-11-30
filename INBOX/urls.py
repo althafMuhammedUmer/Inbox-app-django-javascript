@@ -17,22 +17,25 @@ from django.contrib import admin
 from django.urls import path, include
 from App import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    
+    # =============(Backend)================#
     path('admin/', admin.site.urls),
-    # path to home page (front end)
-    path('', views.home, name="home"),
-    # path to inbox page (backend)
+     # path to inbox page (backend)
     path('inbox/', views.inbox, name="inbox"),
     
+    
+    # =============(Frontend)================#
+    # path to home page (front end)
+    path('', views.home, name="home"),
     #path to login/logout
     path('accounts/', include('django.contrib.auth.urls')),
+    #path to send message
+    path('send-message', views.send_message, name="send_message"),
     
-    
-    
-    
-    
-    
+      
     
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

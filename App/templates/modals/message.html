@@ -15,7 +15,7 @@ modal-xl
 
 <!--FORM-->
 {% block form %}
-<form action="#" method="POST" autocomplete="off" class"was-validated" enctype="multipart/form-data">
+<form action=" {% url 'send_message' %} " method="POST" autocomplete="off" class"was-validated" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="modal-body ">
         <div class="mb-1">
@@ -50,7 +50,7 @@ modal-xl
 
     </div>
     <!--=====Input Hidden  (all messages arrives as pending) =======-->
-    <input type="hidden" value="pending" name="status">
+    <input type="hidden" value="Pending" name="status">
 </form>
 
 
