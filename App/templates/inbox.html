@@ -1,108 +1,167 @@
 {% extends 'base.html' %}
 <!--===title of the browser-->
-{% block title %}
-Inbox
-{% endblock title %}
+{% block title %} Inbox {% endblock title %}
 
 <!---======Block image======-->
-{% block image %}
-{% endblock image %}
+{% block image %} {% endblock image %}
 
 <!---====Block Typed Js-->
-{% block typed %}
-{% endblock typed %}
+{% block typed %} {% endblock typed %}
 
 <!--=== Nav Title-->
 {% block navtitle %}
-<i class='bx bxs-envelope' ></i>&nbsp;&nbsp;<span>Inbox</span>
+<i class="bx bxs-envelope"></i>&nbsp;&nbsp;<span>Inbox</span>
 {% endblock navtitle %}
 
 <!-- Datetime (desktop mode)-->
 {% block datetime %}
-<div class="text-light" id="desk-datetime" style="font-size: 12px; margin-top: 5px;">{% now "l (d/m/Y)" %} &nbsp;
-    <span style="color: #8abaae; font-weight: bold;" id="clock"></span>
+<div
+  class="text-light"
+  id="desk-datetime"
+  style="font-size: 12px; margin-top: 5px"
+>
+  {% now "l (d/m/Y)" %} &nbsp;
+  <span style="color: #8abaae; font-weight: bold" id="clock"></span>
 </div>
 {% endblock datetime %}
-
-
 
 <!--=====Nav Hamburger content=====-->
 {% block sidebar-content %}
 <center>
-    <!--Welcome User-->
-    Welcome: <span class="text-success">{{user.get_username}}</span>
-    <br><br>
+  <!--Welcome User-->
+  Welcome: <span class="text-success">{{user.get_username}}</span> <br /><br />
 </center>
 
-
-<a  class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
-<a href="{% url 'admin:index' %}" target="-blank" class="btn btn-outline-success btn-sm">Admin</a>
-
+<a
+  class="btn btn-outline-danger btn-sm"
+  data-bs-toggle="modal"
+  data-bs-target="#logoutModal"
+  >Logout</a
+>
+<a
+  href="{% url 'admin:index' %}"
+  target="-blank"
+  class="btn btn-outline-success btn-sm"
+  >Admin</a
+>
 
 {% endblock sidebar-content %}
 
-
-
-
-
 <!--====page content===-->
 {% block content %}
-<div class="container-fluid mt-3" style="width: 90;">
-    <!--Dashboard-->
-    <div>
-        {% include 'dashboard/dashboard.html' %}
+<div class="container-fluid mt-3" style="width: 90">
+  <!--Dashboard-->
+  <div>{% include 'dashboard/dashboard.html' %}</div>
+  <br />
+  <!--Global search-->
+  <form id="global-search" class="hide">
+    <div class="input-group input-group-sm mb-3">
+      <input
+        name="keyword"
+        type="text"
+        class="form-control input-sm"
+        placeholder="search for ..."
+        value="{{request.GET.keyword}}"
+      />
+      <button type="submit" class="btn btn-secondary" title="Search">
+        <i class="fas fa-search"></i>
+      </button>
+      <a
+        href="{% url 'inbox' %}"
+        class="btn btn-dark"
+        style="margin-left: 2px"
+        title="Refresh"
+        ><i class="fas fa-sync-alt"></i
+      ></a>
     </div>
-    <br>
-    <!--Global search-->
-    <form  id="global-search" class="hide" >
-        <div class="input-group input-group-sm mb-3">
-            <input name="keyword" type="text"  class="form-control input-sm" placeholder="search for ...">
-            <button type="submit" class="btn btn-secondary" title="Search" ><i class="fas fa-search"></i></button>
-            <a href="{% url 'inbox' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh"><i class="fas fa-sync-alt"></i></a>
-        </div>
-    </form>
+  </form>
 
-    <!--Table of messages-->
-    <div class="col-lg-12">
-        <div style="margin-top: 5px;">
-            <table class="table table-sm">
-                <thead class="table-secondary">
-                    <tr>
-                        <th style="width: 18%;">Name</th>
-                        <th style="width: 13%;">Phone</th>
-                        <th style="width: 18%;">Email</th>
-                        <th style="width: 18%;">Subject</th>
-                        <th style="width: 15%;">Received on</th>
-                        <th style="width: 10%;">Status</th>
-                        <th colspan="2" style="width: 8%; text-align: center;">Actions</th>
-                        
-                    </tr>
-                </thead>
-                <!--====Data from Backend here ======-->
-                {% for customer in customers %}
-                <tr>
-                    <td>{{customer.name}}</td>
-                    <td>{{customer.phone}}</td>
-                    <td>{{customer.email}}</td>
-                    <td>{{customer.subject}}</td> 
-                    <td>{{customer.created_at | date:'m/d/y (H:i)'}}</td>
-                    <td>{{customer.status}}</td>
-                    <td>
-                        <button class="btn btn-secondary btn-sm btn-action" title="Delete message">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <a class="btn text-light btn-sm btn-action" style="background-color: #2e856e;" title="Read message" href="">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
+  <!--Table of messages-->
+  <div class="col-lg-12">
+    <div style="margin-top: 5px">
+      <table class="table table-sm">
+        <thead class="table-secondary">
+          <tr>
+            <th style="width: 18%">Name</th>
+            <th style="width: 13%">Phone</th>
+            <th style="width: 18%">Email</th>
+            <th style="width: 18%">Subject</th>
+            <th style="width: 15%">Received on</th>
+            <th style="width: 10%">Status</th>
+            <th colspan="2" style="width: 8%; text-align: center">Actions</th>
+          </tr>
+        </thead>
+        <!--====Data from Backend here ======-->
+        {% for customer in customers %}
+        <tr>
+          <td>{{customer.name}}</td>
+          <td>{{customer.phone}}</td>
+          <td>{{customer.email}}</td>
+          <td>{{customer.subject}}</td>
+          <td>{{customer.created_at | date:'m/d/y (H:i)'}}</td>
+          <td>{{customer.status}}</td>
+          <td>
+            <button
+              class="btn btn-secondary btn-sm btn-action"
+              title="Delete message"
+              data-bs-toggle="modal" data-bs-target="#deleteModal{{customer.pk}}"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+          <td>
+            <a
+              class="btn text-light btn-sm btn-action"
+              style="background-color: #2e856e"
+              title="Read message"
+              href=""
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </td>
+        </tr>
 
-            </table>
-        </div>
+        <!--Modal delete confirmation-->
+        {% include 'modals/delete.html' %}
+        {% endfor %}
+      </table>
     </div>
+  </div>
 
-</div> <!--END container-->
+  <!---Pagination-->
+  <nav>
+    {% if customers.has_other_pages %}
+    <ul class="pagination">
+      {% if cusomers.has_previous %}
+      <a href="?page={{customers.next_page_number }}" class="btn btn-outline-secondary mb-4" style="border-radius: 1px; border:1px; solid #d3d3d3">First</a>
+      <li class="page-item">
+        <a class="page-link" href="?page={{customers.previour_page_number }}"><i class="fas fa-angle-double-left"></i></a>
+      </li>
+      {% else %}
+      <li class="page-item disabled"></li>
+      {% endif %} 
+      {% for i in customers.paginator.page_range %}
+       {% if customers.number == i %}
+      <li class="page-item active"><span class"page-link">{{i}}<span class="sr-only"></span></span></li>
+      {% else %}
+      <li class="page-item"><a href="?page={{i}}" class="page-link">{{i}}</a></li>
+      {% endif %}
+       {% endfor %}
+      
+
+
+       {% if cusomers.has_next %}
+      
+      <li class="page-item">
+        <a class="page-link" href="?page={{customers.next_page_number }}"><i class="fas fa-angle-double-right"></i></a>
+      </li>
+      <a href="?page={{cusomers.paginator.num_pages}}" class="btn btn-outline-secondary mb-4" style="border-radius: 1px; border:1px; solid #d3d3d3">Last</a>
+      {% else %}
+      <li class="page-item disabled"></li>
+      {% endif %} 
+    </ul>
+    {% endif %}
+  </nav>
+</div>
+<!--END container-->
 {% endblock content %}

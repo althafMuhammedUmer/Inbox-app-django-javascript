@@ -68,7 +68,7 @@ def inbox(request):
     else:  
         all_customer_list = Customer.objects.all().order_by('-created_at')
         
-    paginator = Paginator(all_customer_list, 3)
+    paginator = Paginator(all_customer_list, 4)
     page = request.GET.get('page')
     all_customer = paginator.get_page(page)
     
