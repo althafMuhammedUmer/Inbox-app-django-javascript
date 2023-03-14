@@ -135,11 +135,8 @@ LOGIN_REDIRECT_URL="inbox"
 LOGOUT_REDIRECT_URL="home"
 
 
-#jazzmin
+#jazzmin 
 JAZZMIN_SETTINGS = {
-    # # "site_title": "Library Admin",
-    #   "login_logo": None,
-      
-    #   # Logo to use for your site, must be present in static files, used for brand on top left
-    # "site_logo": "books/img/logo.png",
+    "welcome_sign": "Hi admin",
+    
 }

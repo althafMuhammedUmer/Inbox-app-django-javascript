@@ -54,13 +54,13 @@ Inbox
     </div>
     <br>
     <!--Global search-->
-    <form action="">
+    <form  id="global-search" class="hide" action=" {% url 'inbox' %} " >
         <div class="input-group input-group-sm mb-3">
-            <input type="text" name"#" class="form-control input-sm" placeholder="search for ..." value="#">
+            <input name"q" type="text"  class="form-control input-sm" placeholder="search for ...">
             <button type="submit" class="btn btn-secondary" title="Search" ><i class="fas fa-search"></i></button>
-            <a href="{% url 'inbox' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh"><i class="fas fa-sync-alt"></i></a>
         </div>
     </form>
+    <a href="{% url 'inbox' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh"><i class="fas fa-sync-alt"></i></a>
 
     <!--Table of messages-->
     <div class="col-lg-12">
@@ -79,13 +79,14 @@ Inbox
                     </tr>
                 </thead>
                 <!--====Data from Backend here ======-->
+                {% for customer in customers %}
                 <tr>
-                    <td>althaf</td>
-                    <td>6282595046</td>
-                    <td>althaf@gmail.com</td>
-                    <td>leave application</td>
-                    <td>date time 1</td>
-                    <td>status 1</td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.subject}}</td> 
+                    <td>{{customer.created_at | date:'m/d/y (H:i)'}}</td>
+                    <td>{{customer.status}}</td>
                     <td>
                         <button class="btn btn-secondary btn-sm btn-action" title="Delete message">
                             <i class="fas fa-trash-alt"></i>
@@ -97,6 +98,7 @@ Inbox
                         </a>
                     </td>
                 </tr>
+                {% endfor %}
 
             </table>
         </div>
