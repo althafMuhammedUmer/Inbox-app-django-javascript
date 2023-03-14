@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
      # path to inbox page (backend)
     path('inbox/', views.inbox, name="inbox"),
-    path('search/', views.search, name="search"),
+   
     
     
     # =============(Frontend)================#

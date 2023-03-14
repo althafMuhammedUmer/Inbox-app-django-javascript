@@ -47,23 +47,7 @@ def send_message(request):
     # =============(Backend)================#
 # function to inbox (backend)
 
-def search(request):
-    if 'q' in request.GET:
-        q = request.GET.get['q']
-        all_customer_list = Customer.objects.filter(
-            Q(name__icontains=q) | Q(phone__icontains=q) |
-            Q(email__icontains=q) | Q(subject__icontains=q) |
-            Q(message__icontains=q) | Q(status__icontains=q) 
-            
-        ).order_by('-created_at')
-    
-    else:
-        all_customer_list = Customer.objects.all().order_by('-created_at')
-        
-    
-    return render(request, "inbox.html", {
-        "customers": all_customer_list,
-    })
+
         
 
     
@@ -73,19 +57,16 @@ def search(request):
 @login_required(login_url="login")
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)  # with these three configuratin we distroy the session
 def inbox(request):
-    if "q" in request.GET:
-       
-        q = request.GET["q"]
-        if q:
-            print("hello")
-            all_customer_list = Customer.objects.filter(
-                Q(name__icontains=q) | Q(phone__icontains=q) |
-                Q(email__icontains=q) | Q(subject__icontains=q) |
-                Q(message__icontains=q) | Q(status__icontains=q) 
-                
-            ).order_by('-created_at')
-      
-    all_customer_list = Customer.objects.all().order_by('-created_at')
+    if "keyword" in request.GET:
+        q = request.GET["keyword"]
+        all_customer_list = Customer.objects.filter(
+            Q(name__icontains=q) | Q(phone__icontains=q) |
+            Q(email__icontains=q) | Q(subject__icontains=q) |
+            Q(message__icontains=q) | Q(status__icontains=q) 
+            
+        ).order_by('-created_at')
+    else:  
+        all_customer_list = Customer.objects.all().order_by('-created_at')
         
     paginator = Paginator(all_customer_list, 3)
     page = request.GET.get('page')
