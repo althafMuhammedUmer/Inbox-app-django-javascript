@@ -25,6 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
      # path to inbox page (backend)
     path('inbox/', views.inbox, name="inbox"),
+    
+    #path to delete message
+    path('delete-message/<str:customer_id>', views.delete_customer, name="delete_customer" ),
    
     
     

@@ -24,7 +24,6 @@ def home(request):
 @csrf_exempt
 def send_message(request):
     if request.method == 'POST':
-        print("send message is working")
         form = CustomerForm(request.POST, request.FILES)
         if form.is_valid():
             print('form is valid')
@@ -32,7 +31,7 @@ def send_message(request):
             messages.success(request, 'Message send successfully')
         else:
             print(form.errors)
-            print('form is invalid')
+            
            
         return HttpResponseRedirect('/')
     
@@ -46,12 +45,6 @@ def send_message(request):
 
     # =============(Backend)================#
 # function to inbox (backend)
-
-
-        
-
-    
-
 
 
 @login_required(login_url="login")
@@ -97,6 +90,17 @@ def inbox(request):
         "today" : today,
     
         })
+    
+@login_required(login_url="login")
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def delete_customer(request, customer_id):
+    customer = Customer.objects.get(id=customer_id)
+    customer.delete()
+    
+    messages.success(request, "Message is successfully deleted !")
+    
+    return HttpResponseRedirect('/inbox')
+    
 
 
 
