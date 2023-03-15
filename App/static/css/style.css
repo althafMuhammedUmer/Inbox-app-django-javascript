@@ -56,6 +56,10 @@ body {
   border: none;
 }
 
+#responsive-datetime, #mini-dashboard{
+  display: none;
+}
+
 /* -----------------------------
 #  If message not found
 ------------------------------*/

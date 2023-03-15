@@ -32,7 +32,18 @@
 <center>
   <!--Welcome User-->
   Welcome: <span class="text-success">{{user.get_username}}</span> <br /><br />
+  <!-- Date and time in responsive mode -->
+  <div id="responsive-datetime">{% now "l (d/m/Y)" %}
+    <span id="mini-clock"></span>
+    <br>
+  </div>
+  <!-- Dashboard in responsive mode-->
+  <div id="mini-dashboard">
+    <div class="hide" id="dashboard">{% include 'dashboard/dashboard.html' %}</div>
+
+  </div>
 </center>
+<hr>
 
 <a
   class="btn btn-outline-danger btn-sm"

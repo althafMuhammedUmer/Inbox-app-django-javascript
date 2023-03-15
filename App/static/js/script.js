@@ -83,14 +83,14 @@ $("input[type='file']").on("change", function () {
 });
 
 // 6) script to close offcanvas when the logout button is clicked
-$(document).ready(function(){
-    jQuery('#offcanvasRight, .offcanvas-body, a').click(function(){
-        console.log($(this).attr('href'));
-        jQuery('.offcanvas').offcanvas('hide');
-    });
-});
+// $(document).ready(function(){
+//     jQuery('#offcanvasRight, .offcanvas-body, a').click(function(){
+//         console.log($(this).attr('href'));
+//         jQuery('.offcanvas').offcanvas('hide');
+//     });
+// });
 
-// 7) script to show empty message and hide content
+//7) script to show empty message and hide content
 $(document).ready(function(){
     var verify = $('#checked_td').length;
 
@@ -101,4 +101,29 @@ $(document).ready(function(){
     }
 
 });
+
+// 8) script to get time running at realtime
+setInterval(function() {
+    var date = new Date();
+    $('#clock, #mini-clock').html(
+        (data.getHours() < 10 ? '0' : '') + date.getHours() + ":" +
+        (data.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":" + 
+        (data.getSeconds() < 10 ? '0' : '') + date.getSeconds() + ":" 
+    );
+}, 500); 
+
+// 9) script to update the page always at (0:00)
+function autoRefresh(h,m,s){
+    var now = new Date(), then = new Date();
+    then.setHours(h,m,s,0);
+    if (then.getTime() < now.getTime()){
+        then.setDate(now.getDate() + 1 );
+    }
+    var timeout = (then.getTime() - now.getTime());
+
+    setTimeout(function() {
+        window.location.reload(true);
+    }, timeout);
+}
+
 
