@@ -10,8 +10,10 @@
 
 <!--=== Nav Title-->
 {% block navtitle %}
-<i class="bx bxs-envelope"></i>&nbsp;&nbsp;<span>Inbox</span>
-{% endblock navtitle %}
+{% comment %} <a href="/inbox"> {% endcomment %}
+  <i class="bx bxs-envelope"></i>&nbsp;&nbsp;<span>Inbox</span>
+{% comment %} </a> {% endcomment %}
+  {% endblock navtitle %}
 
 <!-- Datetime (desktop mode)-->
 {% block datetime %}
@@ -51,7 +53,7 @@
 {% block content %}
 <div class="container-fluid mt-3" style="width: 90">
   <!--Dashboard-->
-  <div>{% include 'dashboard/dashboard.html' %}</div>
+  <div class="hide" id="dashboard">{% include 'dashboard/dashboard.html' %}</div>
   <br />
   <!--Global search-->
   <form id="global-search" class="hide">
@@ -60,7 +62,7 @@
         name="keyword"
         type="text"
         class="form-control input-sm"
-        placeholder="search for ..."
+        placeholder="search"
         value="{{request.GET.keyword}}"
       />
       <button type="submit" class="btn btn-secondary" title="Search">
@@ -77,7 +79,7 @@
   </form>
 
   <!--Table of messages-->
-  <div class="col-lg-12">
+  <div class="col-lg-12 hide">
     <div style="margin-top: 5px">
       <table class="table table-sm">
         <thead class="table-secondary">
@@ -93,13 +95,17 @@
         </thead>
         <!--====Data from Backend here ======-->
         {% for customer in customers %}
-        <tr>
+        <tr id="checked_td">
           <td>{{customer.name}}</td>
           <td>{{customer.phone}}</td>
           <td>{{customer.email}}</td>
           <td>{{customer.subject}}</td>
           <td>{{customer.created_at | date:'m/d/y (H:i)'}}</td>
-          <td>{{customer.status}}</td>
+          {% if customer.status == 'Pending' %}
+          <td class="text-white bg-danger">{{customer.status}}</td>
+          {% else %}
+          <td class="text-white bg-success">{{customer.status}}</td>
+          {% endif %}
           <td>
             <button
               class="btn btn-secondary btn-sm btn-action"
@@ -164,4 +170,12 @@
   </nav>
 </div>
 <!--END container-->
+
+<!-- If no message show this content-->
+<span class="text-danger" id="msg"></span>
+
+<!-- Button to refresh page-->
+<a href=" {% url 'inbox' %} " id="refresh"></a>
+
+<br><br><br>
 {% endblock content %}

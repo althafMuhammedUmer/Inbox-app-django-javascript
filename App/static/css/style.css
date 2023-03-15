@@ -50,6 +50,36 @@ body {
   width: 45px;
 }
 
+.no-style{
+  background: none;
+  text-decoration: none;
+  border: none;
+}
+
+/* -----------------------------
+#  If message not found
+------------------------------*/
+
+#msg{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+
+}
+
+#refresh{
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  
+}
+
 
 
 
@@ -82,33 +112,6 @@ body {
   text-align: center;
 }
 
-/* --------------------------
-# Message icon (floating) in Home
-----------------------------*/
-/* .pulse {
-  width: 70px;
-  height: 70px;
-  background-color: red;
-  border-radius: 50%;
-  position: relative;
-  animation: animate 3s linear infinite;
-  
-}
-
-@keyframes animate {
-  0% {
-    box-shadow: 0 0 0 0 rgb(255, 109, 74, 0.7), 0 0 0 0 rgb(255, 109, 74, 0.7);
-  }
-  40% {
-    box-shadow: 0 0 0 50px rgb(255, 109, 74, 0), 0 0 0 0 rgb(255, 109, 74, 0.7);
-  }
-  80% {
-    box-shadow: 0 0 0 50px rgb(255, 109, 74, 0), 0 0 0 30px rgb(255, 109, 74, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgb(255, 109, 74, 0), 0 0 0 30px rgb(255, 109, 74, 0);
-  }
-} */
 .pulse {
     width: 60px;
     height: 60px;
