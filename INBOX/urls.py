@@ -28,6 +28,9 @@ urlpatterns = [
     
     #path to delete message
     path('delete-message/<str:customer_id>', views.delete_customer, name="delete_customer" ),
+    
+    #path to view the message of customer
+    path('customer/<str:customer_id>', views.customer, name="customer"),
    
     
     

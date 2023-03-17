@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+<!--===title of the browser-->
+{% block title %} Customer {% endblock title %}
+
+
+
+<!---====Block Typed Js-->
+{% block typed %} {% endblock typed %}
+
+<!--=== Nav Title-->
+{% block navtitle %}
+{% comment %} <a href="/inbox"> {% endcomment %}
+  <i class="fas fa-user-alt"></i>&nbsp;&nbsp;<span style="font-size: 16px;">{{customer.name}}</span>
+{% comment %} </a> {% endcomment %}
+  {% endblock navtitle %}
+
+<!-- Datetime (desktop mode)-->
+{% block datetime %}
+<div
+  class="text-light"
+  id="desk-datetime"
+  style="font-size: 12px; margin-top: 5px"
+>
+  {% now "l (d/m/Y)" %} &nbsp;
+  <span style="color: #8abaae; font-weight: bold" id="clock"></span>
+</div>
+{% endblock datetime %}
+
+<!--=====Nav Hamburger content=====-->
+{% block sidebar-content %}
+<center>
+  <!--Welcome User-->
+  Welcome: <span class="text-success">{{user.get_username}}</span> <br /><br />
+  <!-- Date and time in responsive mode -->
+  <div id="responsive-datetime">{% now "l (d/m/Y)" %}
+    <span id="mini-clock"></span>
+    <br>
+  </div>
+  <!-- Dashboard in responsive mode-->
+  <div id="mini-dashboard">
+    <div class="hide" id="dashboard">{% include 'dashboard/dashboard.html' %}</div>
+
+  </div>
+</center>
+<hr>
+
+<a
+  class="btn btn-outline-danger btn-sm"
+  data-bs-toggle="modal"
+  data-bs-target="#logoutModal"
+  >Logout</a
+>
+<a
+  href="{% url 'admin:index' %}"
+  target="-blank"
+  class="btn btn-outline-success btn-sm"
+  >Admin</a
+>
+
+{% endblock sidebar-content %}
+
+
+<!--Page Content-->
+{% block content %}
+<div class="container bg-white" style="border-radius: 12px; ">
+    <div class="card text-center mt-3 p-2" style="border: none;">
+
+        <div class="card-header">
+            Recieved on: {{customer.created_at | date:'m/d/Y'}} at {{customer.created_at | date:'(H:i)'}}
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="#" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <!--Input ID hidden-->
+            <input type="hidden" value="{{customer.id}}" name="id">
+
+            <div class="input-group mb-2"> 
+                <span class="input-group-text justify-content-center side-label"><i class="fas fa-phone-alt"></i></span>
+                <input type="text" id="input-bg" class="form-control" value="{{customer.phone}}" readonly>
+            </div>
+
+            <div class="input-group mb-2"> 
+                <span class="input-group-text justify-content-center side-label"><i class="fas fa-envelope"></i></span>
+                <input type="text" id="input-bg" class="form-control" value="{{customer.email}}" readonly>
+            </div>
+            <div class="input-group mb-2"> 
+                <span class="input-group-text justify-content-center side-label"><i class="fas fa-user-edit"></i></span>
+                <input type="text" id="input-bg" class="form-control" value="{{customer.subject}}" readonly>
+            </div>
+            <div class="form-group ">
+
+                <textarea name="" id="input-bg" cols="30" rows="10" class="form-control" readonly>{{customer.message}}</textarea>
+            </div>
+
+            <div class="input-group mb-3 mt-3">
+                <a href="/media/{{customer.file}}" target="_blank"  class="bg-dark text-light input-group-text justify-content-center side-label " style="text-decoration: none;">
+                    <i class="fas fa-paperclip"></i>
+                </a>
+                {% if customer.file == "" %}
+                <input type="text" class="form-control" id="input-bg" value="No attachment" readonly>
+                {% else %}
+                <input type="text" class="form-control" id="input-bg" value="{{customer.file }}" readonly>
+                {% endif %}
+            </div>
+
+            <!--Mark  the message as read (section)-->
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

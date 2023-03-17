@@ -90,7 +90,8 @@ def inbox(request):
         "today" : today,
     
         })
-    
+ 
+# function to delete customer(message)   
 @login_required(login_url="login")
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def delete_customer(request, customer_id):
@@ -100,6 +101,18 @@ def delete_customer(request, customer_id):
     messages.success(request, "Message is successfully deleted !")
     
     return HttpResponseRedirect('/inbox')
+
+
+# function to view customer message individually
+@login_required(login_url="login")
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def customer(request, customer_id):
+    customer = Customer.objects.get(id=customer_id)
+    
+    if customer != None:
+        return render(request, 'customer.html', {"customer": customer})
+    
+    
     
 
 
