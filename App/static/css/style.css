@@ -60,6 +60,11 @@ body {
   display: none;
 }
 
+.btn-back {
+  float: left;
+
+}
+
 /* -----------------------------
 #  If message not found
 ------------------------------*/

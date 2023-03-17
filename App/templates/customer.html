@@ -66,8 +66,12 @@
     <div class="card text-center mt-3 p-2" style="border: none;">
 
         <div class="card-header">
+            
             Recieved on: {{customer.created_at | date:'m/d/Y'}} at {{customer.created_at | date:'(H:i)'}}
         </div>
+        <a href=" {% url 'inbox' %} "  class="btn btn-dark btn-back" title="back">
+            <i class="fas fa-arrow-left"> Back</i>
+        </a>
     </div>
     <div class="card-body">
         <form method="POST" action="#" enctype='multipart/form-data'>
@@ -90,7 +94,7 @@
             </div>
             <div class="form-group ">
 
-                <textarea name="" id="input-bg" cols="30" rows="10" class="form-control" readonly>{{customer.message}}</textarea>
+                <textarea name="" id="input-bg"  rows="10" class="form-control" readonly>{{customer.message}}</textarea>
             </div>
 
             <div class="input-group mb-3 mt-3">
@@ -107,6 +111,8 @@
             <!--Mark  the message as read (section)-->
 
         </form>
+            
+       
     </div>
 </div>
 
