@@ -69,9 +69,10 @@
             
             Recieved on: {{customer.created_at | date:'m/d/Y'}} at {{customer.created_at | date:'(H:i)'}}
         </div>
-        <a href=" {% url 'inbox' %} "  class="btn btn-dark btn-back" title="back">
-            <i class="fas fa-arrow-left"> Back</i>
-        </a>
+       
+
+        
+       
     </div>
     <div class="card-body">
         <form method="POST" action="#" enctype='multipart/form-data'>
@@ -109,8 +110,28 @@
             </div>
 
             <!--Mark  the message as read (section)-->
+            
+            
 
         </form>
+        {% comment %} <br class="hide-br"><hr> {% endcomment %}
+        {% if customer.status == "Pending" %}
+        <a   class="btn btn-dark " title="back" data-bs-toggle="modal" data-bs-target="#markModal">
+        {% else %}
+        <a href=" {% url 'inbox' %} "  class="btn btn-dark " title="back">
+          {% endif %}
+          <i class="fas fa-arrow-left"> Back</i>
+        </a>
+        
+        <a  class="btn text-light" id="replay" title="Replay email" data-bs-toggle="modal" data-bs-target="#replayModal">
+          <i class="fas fa-reply"></i>&nbsp; &nbsp; <span class="text-white">Reply</span>
+        </a>
+        
+       
+
+        
+
+        
             
        
     </div>

@@ -106,9 +106,9 @@ $(document).ready(function(){
 setInterval(function() {
     var date = new Date();
     $('#clock, #mini-clock').html(
-        (data.getHours() < 10 ? '0' : '') + date.getHours() + ":" +
-        (data.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":" + 
-        (data.getSeconds() < 10 ? '0' : '') + date.getSeconds() + ":" 
+        (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" +
+        (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":" + 
+        (date.getSeconds() < 10 ? '0' : '') + date.getSeconds() + ":" 
     );
 }, 500); 
 

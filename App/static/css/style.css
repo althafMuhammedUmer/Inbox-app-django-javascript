@@ -60,11 +60,17 @@ body {
   display: none;
 }
 
-.btn-back {
-  float: left;
+
+#replay{
+  float: right;
+  
+  width: 110px;
+  margin-left: 5px;
+  background-color: #2e856e;
+  border-radius: 0px;
+
 
 }
-
 /* -----------------------------
 #  If message not found
 ------------------------------*/
