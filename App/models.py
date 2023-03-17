@@ -3,11 +3,7 @@ from django.utils.html import format_html
 
 # Create your models here.
 class Customer(models.Model):
-    STATUS = (
-        ('Pending', 'Pending'),
-        ('Read', 'Read'),
-        
-    )
+    
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
@@ -15,7 +11,7 @@ class Customer(models.Model):
     message = models.TextField(max_length=1000)
     file = models.FileField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50, choices=STATUS)
+    status = models.CharField(max_length=50)
     
     
     # control read/unread message in admin.py

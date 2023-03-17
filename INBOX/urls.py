@@ -31,6 +31,9 @@ urlpatterns = [
     
     #path to view the message of customer
     path('customer/<str:customer_id>', views.customer, name="customer"),
+    
+    # path to mark message as read
+    path('mark_message', views.mark_message, name="mark_message"), 
    
     
     

@@ -75,7 +75,7 @@
        
     </div>
     <div class="card-body">
-        <form method="POST" action="#" enctype='multipart/form-data'>
+        <form method="POST" action="/mark_message" enctype='multipart/form-data'>
             {% csrf_token %}
             <!--Input ID hidden-->
             <input type="hidden" value="{{customer.id}}" name="id">
@@ -109,8 +109,11 @@
                 {% endif %}
             </div>
 
+            <!-- This value goes to the backend(Database)-->
+            <input type="hidden" name="status" value="Read">
+
             <!--Mark  the message as read (section)-->
-            
+            {% include 'modals/mark.html' %}
             
 
         </form>
